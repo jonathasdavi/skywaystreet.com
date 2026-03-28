@@ -1674,3 +1674,31 @@ animation: slideFade 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     opacity: 0;
   }
 }
+
+
+/* Mobile apenas: modal menor, rápido e vídeo sem corte */
+@media (max-width: 768px) {
+  #galleryModal {
+    transform: scale(0.85); /* Menor: 85% do tamanho original */
+    transition: opacity 0.2s ease, transform 0.2s ease; /* Mais rápido: 0.2s */
+  }
+  
+  #galleryModal.open {
+    transform: scale(0.85);
+  }
+  
+  #galleryModalVideo,
+  #galleryModalImage {
+    max-width: 95vw;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Vídeo/imagem sem corte, ajusta proporção */
+  }
+  
+  .gallery-modal-content {
+    padding: 10px; /* Menos padding para mais espaço */
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+}
