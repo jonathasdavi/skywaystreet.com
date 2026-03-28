@@ -1,0 +1,1245 @@
+/* ========================================
+   28E: Last Stop - Pitch Deck Styles
+   ======================================== */
+
+/* Variables */
+:root {
+    --bg-primary: #050505;
+    --bg-secondary: #0f0f0f;
+    --bg-card: #121212;
+    --text-primary: #e5e5e5;
+    --text-secondary: #a3a3a3;
+    --text-muted: #525252;
+    --accent-gold: #d4b976;
+    --accent-gold-dim: #8c7a4d;
+}
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Film grain overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Typography */
+.font-heading, h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+/* Selection */
+::selection {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
+.nav-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-sticky.visible {
+    transform: translateY(0);
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: 'Arial', sans-serif;
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.mobile-menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+.mobile-menu a {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 5, 0.4) 0%,
+        rgba(5, 5, 5, 0.6) 50%,
+        rgba(5, 5, 5, 0.95) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 1.5rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.scroll-indicator span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.scroll-indicator svg {
+    color: var(--text-muted);
+    animation: bounce 2s infinite;
+}
+
+@media (min-width: 640px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 6rem;
+    }
+}
+
+/* ========================================
+   Sections
+   ======================================== */
+.section {
+    padding: 5rem 1.5rem;
+}
+
+.section-dark {
+    background: var(--bg-secondary);
+}
+
+.section-laurels {
+    background: var(--bg-primary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-presskit {
+    background: var(--bg-primary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 768px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.section-label.gold {
+    color: var(--accent-gold);
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background: var(--text-muted);
+    margin: 1rem auto 0;
+}
+
+.divider-gold {
+    background: var(--accent-gold);
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 6rem 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section {
+        padding: 8rem 4rem;
+    }
+}
+
+/* ========================================
+   About Section
+   ======================================== */
+.about-logline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.6;
+    color: var(--text-primary);
+    max-width: 900px;
+    margin: 0 auto 3rem;
+}
+
+.film-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.detail-item {
+    text-align: center;
+}
+
+.detail-label {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+@media (min-width: 640px) {
+    .about-logline {
+        font-size: 1.875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .film-details {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .about-logline {
+        font-size: 2.25rem;
+    }
+}
+
+/* ========================================
+   Laurels Section
+   ======================================== */
+.laurels-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.laurel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.laurel-item:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.laurel-icon {
+    color: var(--accent-gold);
+}
+
+.laurel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    text-align: center;
+    max-width: 120px;
+}
+
+.laurel-award {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--accent-gold);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .laurels-grid {
+        gap: 3rem;
+    }
+}
+
+/* ========================================
+   Creator Statement
+   ======================================== */
+.creator-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.creator-statement {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    line-height: 1.8;
+}
+
+.creator-statement p {
+    margin-bottom: 1.5rem;
+}
+
+.creator-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .creator-quote {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========================================
+   Synopsis Section
+   ======================================== */
+.synopsis-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.synopsis-headline {
+    font-size: 1.875rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.synopsis-left .divider {
+    margin: 0;
+}
+
+.synopsis-right {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.8;
+}
+
+.synopsis-right p {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .synopsis-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+    .synopsis-headline {
+        font-size: 2.25rem;
+    }
+}
+
+/* ========================================
+   Visual Style Section
+   ======================================== */
+.style-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.style-tag {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.style-tag:hover {
+    border-color: var(--accent-gold-dim);
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Cast Section
+   ======================================== */
+.cast-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.cast-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--bg-card);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cast-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.cast-image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.cast-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.cast-card:hover .cast-image img {
+    filter: grayscale(30%);
+    transform: scale(1.05);
+}
+
+.cast-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(5, 5, 5, 0.95), transparent);
+}
+
+.cast-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.cast-age {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.cast-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .cast-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .cast-overlay {
+        padding: 3rem 1.25rem 1.25rem;
+    }
+    .cast-name {
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================================
+   Production Section
+   ======================================== */
+.production-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.production-team .section-label,
+.production-festivals .section-label {
+    display: block;
+    text-align: left;
+}
+
+.production-team .divider,
+.production-festivals .divider {
+    margin: 1rem 0 2rem;
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-item {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.team-role {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    min-width: 120px;
+}
+
+.team-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.festivals-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.festival-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(212, 185, 118, 0.1);
+    border: 1px solid rgba(212, 185, 118, 0.2);
+    border-radius: 2px;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+}
+
+.festival-badge svg {
+    color: var(--accent-gold);
+}
+
+@media (min-width: 1024px) {
+    .production-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+/* ========================================
+   Press Kit Section
+   ======================================== */
+.presskit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.press-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.press-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    background: rgba(212, 185, 118, 0.05);
+}
+
+@media (min-width: 768px) {
+    .presskit-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ========================================
+   Contact Section
+   ======================================== */
+.contact-name {
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.contact-role {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    text-align: center;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--accent-gold);
+}
+
+@media (min-width: 640px) {
+    .contact-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+    }
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    padding: 2rem 1.5rem;
+    background: var(--bg-primary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    font-family: 'Arial', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.footer-copyright {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* ========================================
+   Visual Approach Section
+   ======================================== */
+.visual-approach-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.approach-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.approach-card:hover {
+    border-color: var(--accent-gold-dim);
+    transform: translateY(-4px);
+}
+
+.approach-icon {
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.approach-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.approach-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+    .visual-approach-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ========================================
+   Cinematic References Section
+   ======================================== */
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.reference-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.reference-card:hover {
+    border-color: var(--accent-gold-dim);
+}
+
+.reference-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.reference-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+    .references-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ========================================
+   Market Section
+   ======================================== */
+.market-stats {
+    display: grid;
+    gap: 2rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-sub {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+    .market-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ========================================
+   Distribution Timeline
+   ======================================== */
+.distribution-timeline {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    border-color: var(--accent-gold-dim);
+}
+
+.timeline-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    line-height: 1;
+}
+
+.timeline-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+    .distribution-timeline {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .distribution-timeline {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ========================================
+   Audience Section
+   ======================================== */
+.audience-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.audience-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+}
+
+.audience-type {
+    display: inline-block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    background: rgba(212, 185, 118, 0.1);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.audience-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+    .audience-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ========================================
+   Budget Section
+   ======================================== */
+.budget-total {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.budget-value {
+    display: block;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.budget-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.budget-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.budget-allocation {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.allocation-item {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.allocation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.allocation-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.allocation-percent {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.875rem;
+    color: var(--accent-gold);
+}
+
+.allocation-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.allocation-fill {
+    height: 100%;
+    background: var(--accent-gold);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.allocation-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.allocation-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.allocation-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.funding-sources {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.funding-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.funding-name {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.funding-value {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.875rem;
+    color: var(--accent-gold);
+}
