@@ -12,14 +12,14 @@ const films = [
     logline:
       "DRAMA, SHORT FILM",
     poster: poster28e,
-    url: "http://skywaystreet.com/28e", // troque pela URL real
+    url: "/28e", // troque pela URL real
   },
   {
     title: "TAXONOMY",
     logline:
-      "COMEDY DRAMA, SHORT FILM",
+      "COMEDY, SHORT FILM",
     poster: posterTaxonomy,
-    url: "http://skywaystreet.com/taxonomy", // troque pela URL real
+    url: "/taxonomy", // troque pela URL real
   },
   {
     title: "SIERRA NEVADA",
