@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import poster28e from "@/assets/poster-28e.png";
 import posterTaxonomy from "@/assets/poster-taxonomy.png";
-import posterDelivery from "@/assets/poster-delivery.png";
+import posterSierraNevada from "@/assets/poster-sierranevada.png";
 import FilmCard from "./FilmCard";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -25,8 +25,8 @@ const films = [
     title: "SIERRA NEVADA",
     logline:
       "DRAMA, SHORT FILM",
-    poster: posterDelivery,
-    url: "https://seu-site.com/delivery", // troque pela URL real
+    poster: posterSierraNevada,
+    url: "https://skywaystreet.com/sierranevada", // troque pela URL real
   },
 ];
 
