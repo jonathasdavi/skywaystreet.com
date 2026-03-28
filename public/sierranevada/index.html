@@ -193,10 +193,22 @@
       letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
       margin-bottom: 24px; display: block;
     }
+
+    @font-face {
+  font-family: 'DistinctSans';
+  src: url('./fonts/distinct-style-sans-2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
     h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.1; margin-bottom: 48px; font-weight: 300;
+  font-family: 'DistinctSans', sans-serif;
+font-size: clamp(2rem, 5vw, 2.5rem);  
+ line-height: 1.1; margin-bottom: 48px; font-weight: -300;
+        font-family: 'DistinctSans', sans-serif;
+  letter-spacing:10px;
+  line-height: 1.6;
+  text-transform: uppercase; /* opcional, fica mais estiloso */
     }
     h3 {
       font-family: var(--font-display);
@@ -407,7 +419,7 @@
 <section id="synopsis">
   <div class="section-inner wide">
     <span class="label reveal">Synopsis</span>
-    <h2 class="reveal d1">Two Seats.<br>One Road.<br>A Thousand Miles of Silence.</h2>
+    <h2 class="reveal d1">TWO SEATS<br><span style="color: darkgrey;">ONE ROAD</span><br>MILES OF SILENCE</h2>
     <div class="grid-2">
       <div class="reveal d2" style="display:flex;flex-direction:column;gap:24px">
         <p class="body-text">Miguel (37) and Sofia (35) leave their beach house in Costa da Caparica heading to a cabin in Sierra Nevada. Three days. A reservation for two. The silence between them is as heavy as the gray sky overhead.</p>
@@ -440,7 +452,7 @@
 <section id="characters" class="bg-card">
   <div class="section-inner">
     <span class="label reveal">Cast &amp; Characters</span>
-    <h2 class="reveal d1">The Passengers</h2>
+    <h2 class="reveal d1">THE PASSENGERS</h2>
     <div class="grid-2">
       <div class="card reveal d2">
         <div class="initial">M</div>
@@ -478,7 +490,7 @@
 <section id="visual" class="bg-card">
   <div class="section-inner wide">
     <span class="label reveal">Visual Approach</span>
-    <h2 class="reveal d1">Style &amp; Tone</h2>
+    <h2 class="reveal d1">STYLE &amp; TONE</h2>
 
     <div class="reveal-scale" style="overflow:hidden;margin-bottom:64px">
       <img class="img-cover" style="height:clamp(200px,40vw,384px)"
@@ -525,7 +537,7 @@
 <section id="market">
   <div class="section-inner wide">
     <span class="label reveal">Market &amp; Distribution</span>
-    <h2 class="reveal d1">Opportunity</h2>
+    <h2 class="reveal d1">OPPORTUNITY</h2>
 
     <div class="grid-3" style="margin-bottom:80px">
       <div class="stat-card reveal"><p class="val">€2.4B</p><p class="stat-label">European art house market (2025)</p><p class="stat-sub">Growing demand for intimate dramas</p></div>
